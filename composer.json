@@ -1,6 +1,6 @@
 {
     "name": "boyhagemann/waveform",
-    "description": "A php package generate waveforms based on a WAV file",
+    "description": "A php package that can generate waveforms based on a WAV file",
     "keywords": [
         "php",
         "wave",
