@@ -2,7 +2,7 @@
 
 namespace Boyhagemann\Waveform;
 
-use Boyhagemann\Wave;
+use Boyhagemann\Wave\Wave;
 
 /**
  * Description of Waveform
