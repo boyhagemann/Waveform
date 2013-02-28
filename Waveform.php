@@ -1,8 +1,8 @@
 <?php
 
-namespace Boyhagemann\Waveform;
+namespace BoyHagemann\Waveform;
 
-use Boyhagemann\Wave\Wave;
+use BoyHagemann\Wave\Wave;
 
 /**
  * Description of Waveform
