@@ -1,7 +1,7 @@
 Waveform
 ========
 
-This package creates a waveform, based on the BoyHagemann\Wave class. It will have several generators to present the waveform.
+This package creates a waveform, based on the [BoyHagemann\Wave](http://github.com/boyhagemann/Wave) class. It will have several generators to present the waveform.
 
 ## Install
 
