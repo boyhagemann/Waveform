@@ -13,29 +13,35 @@ use BoyHagemann\Waveform\Generator\GeneratorInterface;
 class Waveform 
 {    
     /**
+     * The width of the waveform in pixels
      *
      * @var integer
      */
-    protected $widh = 500;
+    protected $width = 500;
     
     /**
+     * The height of the waveform in pixels
      *
      * @var integer
      */
     protected $height = 200;
+    
     /**
+     * The wave object, containing the analyzed data and metadata
      *
      * @var Wave
      */
     protected $wave;
     
     /**
+     * The generator that is used to generate the waveform
      *
      * @var GeneratorInterface $generator
      */
     protected $generator;
     
     /**
+     * Constructor
      * 
      * @param Wave $wave
      */
@@ -45,6 +51,7 @@ class Waveform
     }
     
     /**
+     * Get the generator that is used to generate the waveform
      * 
      * @throws Exception
      * @return GeneratorInterface
@@ -59,6 +66,10 @@ class Waveform
     }
 
     /**
+     * Set the generator that is used to generate the waveform.
+     * 
+     * Directly after setting the generator, it will be injected this
+     * Waveform object itself.
      * 
      * @param GeneratorInterface $generator
      * @return Waveform
@@ -72,6 +83,10 @@ class Waveform
 
         
     /**
+     * Get an instance of the Waveform object by simply setting the filename.
+     * 
+     * It constructs a new Wave object, sets the filename and returns a
+     * Waveform instance with that Wave object injected.
      * 
      * @param string $filename
      * @return Waveform
@@ -85,6 +100,7 @@ class Waveform
     }
         
     /**
+     * Get the Wave object, containing all the analyzed data and metadata
      * 
      * @return Wave
      */
@@ -94,6 +110,7 @@ class Waveform
     }
 
     /**
+     * Set the Wave object
      * 
      * @param Wave $wave
      * @return Waveform
@@ -105,22 +122,24 @@ class Waveform
     }
     
     /**
+     * Get the width of the waveform in pixels
      * 
      * @return integer
      */
-    public function getWidh() 
+    public function getWidth() 
     {
-        return $this->widh;
+        return $this->width;
     }
 
     /**
+     * Set the width of the waveform in pixels
      * 
-     * @param integer $widh
+     * @param integer $width
      * @return Waveform
      */
-    public function setWidh($widh) 
+    public function setWidth($width) 
     {
-        $this->widh = $widh;
+        $this->width = $width;
         return $this;
     }
     
@@ -135,7 +154,7 @@ class Waveform
     /**
      * 
      * @param integer $height
-     * @return \BoyhagemannWave\Waveform
+     * @return Waveform
      */
     public function setHeight($height) 
     {
@@ -144,6 +163,7 @@ class Waveform
     }
 
     /**
+     * Get the analyzed waveform data as values per pixel
      * 
      * @return array
      */
@@ -162,35 +182,9 @@ class Waveform
 
             $pixel = floor($position / $size * $width);
             
-//            $value = ($amplitude - $range) / $range * $height;
-//
-//            if($value <= 0) {
-//                $value += 2 * $height;
-//            }       
-//            
-//            $values[$pixel][] = $value;
-//        }
-//        
-//        $summary = array();
-//        foreach($values as $pixel => $amplitudes) {
-//            $summary[$pixel] = floor(min($amplitudes) + max($amplitudes) / 2);
-//        }
-        
-        
-//        $left = current(unpack('v', fread($fh, 2)));
-
-//        if($channels == 2) {
-//            $right = current(unpack('v', fread($fh, 2)));       
-//        }
-
             if($amplitude >= $range) {
                 $amplitude -= 2 * $range;        
             }
-
-    //        $iPosition += $steps * $blockSize;
-
-    //        fread($fh, $steps * $blockSize);
-
 
             $sum[$pixel][] = $amplitude;
 
@@ -201,12 +195,11 @@ class Waveform
             $summary[$pixel] = floor((max($values) / $range) * $height);
         }
                 
-//        var_dump($summary); exit;
-                
         return $summary;
     }
     
     /**
+     * Generate the waveform based on the chosen generator
      * 
      * @return mixed
      */
