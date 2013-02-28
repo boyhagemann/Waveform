@@ -17,7 +17,7 @@
     "target-dir": "BoyHagemann/Waveform",
     "require": {
         "php": ">=5.3.3",
-        "boyhagemann/wave": "0.1-dev"
+        "boyhagemann/wave": "dev-master"
     },
     "extra": {
         "branch-alias": {
