@@ -1,6 +1,6 @@
 <?php
 
-namespace BoyhagemannWave;
+namespace Boyhagemann\Waveform;
 
 /**
  * Description of Waveform
