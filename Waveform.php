@@ -2,6 +2,8 @@
 
 namespace Boyhagemann\Waveform;
 
+use Boyhagemann\Wave;
+
 /**
  * Description of Waveform
  *
