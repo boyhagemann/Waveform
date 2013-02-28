@@ -5,6 +5,14 @@ This package creates a waveform, based on the BoyHagemann\Wave class. It will ha
 
 ## Install
 
+You can install with composer using the following lines in your composer.json file:
+```
+"minimum-stability": "dev",
+"require": {
+    "boyhagemann/waveform": "dev-master"
+}
+```
+
 ## How to use
 
 The most basic way to generate a waveform is like this:
