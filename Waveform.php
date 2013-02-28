@@ -3,6 +3,7 @@
 namespace BoyHagemann\Waveform;
 
 use BoyHagemann\Wave\Wave;
+use BoyHagemann\Waveform\Generator\GeneratorInterface;
 
 /**
  * Description of Waveform
@@ -10,7 +11,30 @@ use BoyHagemann\Wave\Wave;
  * @author boyhagemann
  */
 class Waveform 
-{
+{    
+    /**
+     *
+     * @var integer
+     */
+    protected $widh = 500;
+    
+    /**
+     *
+     * @var integer
+     */
+    protected $height = 200;
+    /**
+     *
+     * @var Wave
+     */
+    protected $wave;
+    
+    /**
+     *
+     * @var GeneratorInterface $generator
+     */
+    protected $generator;
+    
     /**
      * 
      * @param Wave $wave
@@ -20,6 +44,28 @@ class Waveform
         $this->setWave($wave);
     }
     
+    /**
+     * 
+     * @return GeneratorInterface
+     */
+    public function getGenerator() 
+    {
+        return $this->generator;
+    }
+
+    /**
+     * 
+     * @param GeneratorInterface $generator
+     * @return Waveform
+     */
+    public function setGenerator(GeneratorInterface $generator) 
+    {
+        $generator->setWaveform($this);
+        $this->generator = $generator;
+        return $this;
+    }
+
+        
     /**
      * 
      * @param string $filename
@@ -32,24 +78,6 @@ class Waveform
         
         return new self($wave);
     }
-
-    /**
-     *
-     * @var Wave
-     */
-    protected $wave;
-    
-    /**
-     *
-     * @var integer
-     */
-    protected $widh = 500;
-    
-    /**
-     *
-     * @var integer
-     */
-    protected $height = 200;
         
     /**
      * 
@@ -116,33 +144,69 @@ class Waveform
      */
     public function toArray()
     {
-        $data = $this->getWave()->getWaveformData();
-        $size = $data->getSize();
-        $channel = $data->getChannel(0);
-        $width = $this->getWidh();
-        $height = $this->getHeight();
-        $values = array();
-        $bits = $this->getWave()->getFmt()->getBitsPerSample();        
-        $range = pow(2, $bits) / 2;
+        $data       = $this->getWave()->getWaveformData();
+        $size       = $data->getSize();
+        $channel    = $data->getChannel(0);
+        $width      = $this->getWidh();
+        $height     = $this->getHeight();
+        $sum        = array();
+        $bits       = $this->getWave()->getFmt()->getBitsPerSample();        
+        $range      = pow(2, $bits) / 2;
         
         foreach($channel->getValues() as $position => $amplitude) {
 
             $pixel = floor($position / $size * $width);
             
-            $value = ($amplitude - $range) / $range * $height;
-
-            if($value <= 0) {
-                $value += 2 * $height;
-            }       
-            
-            $values[$pixel][] = $value;
-        }
+//            $value = ($amplitude - $range) / $range * $height;
+//
+//            if($value <= 0) {
+//                $value += 2 * $height;
+//            }       
+//            
+//            $values[$pixel][] = $value;
+//        }
+//        
+//        $summary = array();
+//        foreach($values as $pixel => $amplitudes) {
+//            $summary[$pixel] = floor(min($amplitudes) + max($amplitudes) / 2);
+//        }
         
+        
+//        $left = current(unpack('v', fread($fh, 2)));
+
+//        if($channels == 2) {
+//            $right = current(unpack('v', fread($fh, 2)));       
+//        }
+
+            if($amplitude >= $range) {
+                $amplitude -= 2 * $range;        
+            }
+
+    //        $iPosition += $steps * $blockSize;
+
+    //        fread($fh, $steps * $blockSize);
+
+
+            $sum[$pixel][] = $amplitude;
+
+        }
+
         $summary = array();
-        foreach($values as $pixel => $amplitudes) {
-            $summary[$pixel] = floor(min($amplitudes) + max($amplitudes) / 2);
+        foreach($sum as $pixel => $values) {
+            $summary[$pixel] = floor((max($values) / $range) * $height);
         }
                 
+//        var_dump($summary); exit;
+                
         return $summary;
+    }
+    
+    /**
+     * 
+     * @return mixed
+     */
+    public function generate()
+    {
+        return $this->getGenerator()->generate();
     }
 }
