@@ -1,0 +1,26 @@
+{
+    "name": "boyhagemann/waveform",
+    "description": "A php package generate waveforms based on a WAV file",
+    "keywords": [
+        "php",
+        "wave",
+        "riff",
+        "chunk",
+        "waveform",
+        "audio"
+    ],
+    "autoload": {
+        "psr-0": {
+            "BoyHagemann\\Waveform\\": ""
+        }
+    },
+    "target-dir": "BoyHagemann/Waveform",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1"
+        }
+    }
+}
