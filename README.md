@@ -20,6 +20,7 @@ The most basic way to generate a waveform is like this:
 <?php
 
 use BoyHagemann\Waveform\Waveform;
+use BoyHagemann\Waveform\Generator;
 
 echo Waveform::fromFilename('the/path/to/the/file.wav');
 ```
