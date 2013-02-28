@@ -155,7 +155,7 @@ class Waveform
         $width      = $this->getWidh();
         $height     = $this->getHeight();
         $sum        = array();
-        $bits       = $this->getWave()->getFmt()->getBitsPerSample();        
+        $bits       = $this->getWave()->getMetadata()->getBitsPerSample();        
         $range      = pow(2, $bits) / 2;
         
         foreach($channel->getValues() as $position => $amplitude) {
