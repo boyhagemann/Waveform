@@ -46,10 +46,15 @@ class Waveform
     
     /**
      * 
+     * @throws Exception
      * @return GeneratorInterface
      */
     public function getGenerator() 
     {
+        if(!$this->generator) {
+            throw new Exception('Please add a generator of type GeneratorInterface to render the waveform');
+        }
+        
         return $this->generator;
     }
 
