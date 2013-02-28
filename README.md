@@ -15,3 +15,28 @@ use BoyHagemann\Waveform\Waveform;
 
 echo Waveform::fromFilename('the/path/to/the/file.wav');
 ```
+
+## Generators
+
+The waveform can be presented in multiple ways:
+- Html
+- Png (not implemented yet)
+- Svg (not implemented yet)
+
+
+It uses a simple interface so you can build your own generator. 
+The interface GeneratorInterface uses three simple methods:
+```
+<?php
+
+namespace BoyHagemann\Waveform\Generator;
+
+use BoyHagemann\Waveform\Waveform;
+
+interface GeneratorInterface
+{
+    public function setWaveform(Waveform $waveform);
+    public function getWaveform();
+    public function generate();
+}
+```
