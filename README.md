@@ -7,7 +7,7 @@ This package creates a waveform, based on the [BoyHagemann\Wave](http://github.c
 ## Install
 
 You can install with composer using the following lines in your composer.json file:
-```
+```json
 "minimum-stability": "dev",
 "require": {
     "boyhagemann/waveform": "dev-master"
@@ -17,7 +17,7 @@ You can install with composer using the following lines in your composer.json fi
 ## How to use
 
 The most basic way to generate a waveform is like this. It has a default width of 500 pixels and a height of 200 pixels.
-```
+```php
 <?php
 
 use BoyHagemann\Waveform\Waveform;
@@ -29,7 +29,7 @@ echo Waveform::fromFilename('the/path/to/the/file.wav');
 
 If you want to test it yourself, try the following code to see a HTML based waveform.
 
-```
+```php
 <?php
 
 use BoyHagemann\Waveform\Waveform;
@@ -88,7 +88,7 @@ The waveform can be presented in multiple ways:
 
 It uses a simple interface so you can build your own generator. 
 The interface GeneratorInterface uses three simple methods:
-```
+```php
 <?php
 
 namespace BoyHagemann\Waveform\Generator;
@@ -108,9 +108,15 @@ interface GeneratorInterface
 You have access to all the wave metadata. 
 The only thing you have to do is retrieving the original Wave object and get the desired information.
 Form more detailed information see [BoyHagemann\Wave documentation](https://github.com/boyhagemann/Wave/blob/master/README.md).
-```
+```php
 $wave = $waveform->getWave();
 $metadata = $wave->getMetadata();
 $metadata->getSampleRate();
 $metadata->getBitsPerSample();
 ```
+
+## To do
+
+- [ ] Add png generator
+- [ ] Add svg generator
+- [ ] Allow different bits per sample (8, 16, 24, 32)
