@@ -2,7 +2,8 @@ Waveform
 ========
 
 This package creates a waveform, based on the [BoyHagemann\Wave](http://github.com/boyhagemann/Wave) class. It will have several generators to present the waveform.
-(https://raw.github.com/boyhagemann/Waveform/master/data/waveform-example.png)
+
+![An example of a generated waveform](https://raw.github.com/boyhagemann/Waveform/master/data/waveform-example.png)
 ## Install
 
 You can install with composer using the following lines in your composer.json file:
