@@ -62,6 +62,7 @@ class Waveform
     {
         if(!$this->generator) {
             $this->generator = new Generator\Html;
+            $this->generator->setWaveform($this);
         }
         
         return $this->generator;
