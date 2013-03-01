@@ -117,6 +117,6 @@ $metadata->getBitsPerSample();
 
 ## To do
 
-- [ ] Add png generator
+- [X] Add png generator
 - [ ] Add svg generator
 - [ ] Allow different bits per sample (8, 16, 24, 32)
