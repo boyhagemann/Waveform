@@ -51,15 +51,17 @@ class Waveform
     }
     
     /**
-     * Get the generator that is used to generate the waveform
+     * Get the generator that is used to generate the waveform.
      * 
-     * @throws Exception
+     * If no generator is set, than by default the html generator is used.
+     * 
+     * @uses Generator\Html
      * @return GeneratorInterface
      */
     public function getGenerator() 
     {
         if(!$this->generator) {
-            throw new Exception('Please add a generator of type GeneratorInterface to render the waveform');
+            $this->generator = new Generator\Html;
         }
         
         return $this->generator;
