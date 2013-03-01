@@ -6,7 +6,8 @@ use BoyHagemann\Wave\Wave;
 use BoyHagemann\Waveform\Generator\GeneratorInterface;
 
 /**
- * Description of Waveform
+ * This class can generate a waveform based on analyzed wave data. It can
+ * have different generators to render a waveform at need.
  *
  * @author boyhagemann
  */
