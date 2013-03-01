@@ -16,7 +16,7 @@ You can install with composer using the following lines in your composer.json fi
 
 ## How to use
 
-The most basic way to generate a waveform is like this:
+The most basic way to generate a waveform is like this. It has a default width of 500 pixels and a height of 200 pixels.
 ```
 <?php
 
@@ -101,4 +101,16 @@ interface GeneratorInterface
     public function getWaveform();
     public function generate();
 }
+```
+
+## Get wave metadata
+
+You have access to all the wave metadata. 
+The only thing you have to do is retrieving the original Wave object and get the desired information.
+Form more detailed information see [BoyHagemann\Wave documentation](https://github.com/boyhagemann/Wave/blob/master/README.md).
+```
+$wave = $waveform->getWave();
+$metadata = $wave->getMetadata();
+$metadata->getSampleRate();
+$metadata->getBitsPerSample();
 ```
