@@ -25,10 +25,35 @@ use BoyHagemann\Waveform\Waveform;
 echo Waveform::fromFilename('the/path/to/the/file.wav');
 ```
 
-## A simple example
+## Generators
 
-If you want to test it yourself, try the following code to see a HTML based waveform.
+The waveform can be presented in multiple ways:
+- Html
+- Png 
+- Svg (not implemented yet)
 
+It uses a simple interface so you can build your own generator. 
+The interface GeneratorInterface uses three simple methods:
+```php
+<?php
+
+namespace BoyHagemann\Waveform\Generator;
+
+use BoyHagemann\Waveform\Waveform;
+
+interface GeneratorInterface
+{
+    public function setWaveform(Waveform $waveform);
+    public function getWaveform();
+    public function generate();
+}
+```
+
+## Examples
+
+If you want to test it yourself, try the following codes.
+
+### Generate a png image
 ```php
 <?php
 
@@ -38,8 +63,25 @@ use BoyHagemann\Waveform\Generator;
 $filename = 'the/path/to/your/file.wav';
 
 $waveform =  Waveform::fromFilename($filename);
-$waveform->setGenerator(new Generator\Html)
+$waveform->setGenerator(new Generator\Png)
          ->setWidh(960)
+         ->setHeight(400);
+
+// Will display the image, including setting the read image/png header
+echo $waveform->generate();
+```
+
+### Generate a html/css based waveform
+
+```php
+<?php
+
+use BoyHagemann\Waveform\Waveform;
+
+$filename = 'the/path/to/your/file.wav';
+
+$waveform =  Waveform::fromFilename($filename);
+$waveform->setWidh(960)
          ->setHeight(400);
 
 $waveformHtml = $waveform->generate();
@@ -78,30 +120,6 @@ $waveformHtml = $waveform->generate();
 
 ```
 
-## Generators
-
-The waveform can be presented in multiple ways:
-- Html
-- Png (not implemented yet)
-- Svg (not implemented yet)
-
-
-It uses a simple interface so you can build your own generator. 
-The interface GeneratorInterface uses three simple methods:
-```php
-<?php
-
-namespace BoyHagemann\Waveform\Generator;
-
-use BoyHagemann\Waveform\Waveform;
-
-interface GeneratorInterface
-{
-    public function setWaveform(Waveform $waveform);
-    public function getWaveform();
-    public function generate();
-}
-```
 
 ## Get wave metadata
 
