@@ -175,7 +175,7 @@ class Waveform
         $data       = $this->getWave()->getWaveformData();
         $size       = $data->getSize();
         $channel    = $data->getChannel(0);
-        $width      = $this->getWidh();
+        $width      = $this->getWidth();
         $height     = $this->getHeight();
         $sum        = array();
         $bits       = $this->getWave()->getMetadata()->getBitsPerSample();        
