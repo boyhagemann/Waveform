@@ -42,6 +42,14 @@ class Waveform
     protected $generator;
     
     /**
+     * Get the peak volume of the wave file and adjust the original wave data
+     * to fit exactly to the max height.
+     *
+     * @var boolean
+     */
+    protected $maximized = true;
+    
+    /**
      * Constructor
      * 
      * @param Wave $wave
@@ -165,7 +173,27 @@ class Waveform
         $this->height = $height;
         return $this;
     }
+    
+    /**
+     * Does the waveform has to fit the maximum height?
+     * 
+     * @return boolean
+     */
+    public function isMaximized() 
+    {
+        return $this->maximized;
+    }
 
+    /**
+     * Set if the waveform has to fit the maximum height
+     * 
+     * @param boolean $maximized
+     */
+    public function setMaximized($maximized) 
+    {
+        $this->maximized = (bool) $maximized;
+    }
+    
     /**
      * Get the analyzed waveform data as values per pixel
      * 
@@ -197,6 +225,16 @@ class Waveform
         $summary = array();
         foreach($sum as $pixel => $values) {
             $summary[$pixel] = floor((max($values) / $range) * $height);
+        }
+        
+        // Do we have to maximize the data?
+        if($this->isMaximized()) {
+            $max = max($summary);
+            $difference = ($height / 2) / $max;
+            
+            foreach($summary as &$value) {
+                $value = round($value * $difference);
+            }
         }
                 
         return $summary;
