@@ -232,7 +232,7 @@ class Waveform
         // Do we have to maximize the data?
         if($this->isMaximized()) {
             $max = max($summary);
-            $difference = ($height / 2) / $max;
+            $difference = $height / $max;
             
             foreach($summary as &$value) {
                 $value = round($value * $difference);
