@@ -188,10 +188,12 @@ class Waveform
      * Set if the waveform has to fit the maximum height
      * 
      * @param boolean $maximized
+     * @return Waveform
      */
     public function setMaximized($maximized) 
     {
         $this->maximized = (bool) $maximized;
+        return $this;
     }
     
     /**
