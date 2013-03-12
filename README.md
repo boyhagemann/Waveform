@@ -119,7 +119,14 @@ $waveformHtml = $waveform->generate();
 </html>
 
 ```
-
+## Maximize
+By default, the wave amplitude data is maximized to match the height you set for the waveform. 
+This means that if you set the height to 200, then the waveform is maximized to 200 pixels.
+The result is a nice looking waveform regardless of the overall loudness.
+Don't want this nifty feature? You can change the behaviour with one simple line of code:
+```php
+$waveform->setMaximized(false); // defaults to true
+```
 
 ## Get wave metadata
 
