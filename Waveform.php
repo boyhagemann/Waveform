@@ -235,7 +235,7 @@ class Waveform
             $difference = $height / $max;
             
             foreach($summary as &$value) {
-                $value = round($value * $difference);
+                $value = (int) round($value * $difference);
             }
         }
                 
