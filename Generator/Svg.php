@@ -5,9 +5,9 @@ namespace BoyHagemann\Waveform\Generator;
 use BoyHagemann\Waveform\Waveform;
 
 /**
- * Description of Png
+ * Description of Svg
  *
- * @author Boy
+ * @author Moussa Clarke
  */
 class Svg implements GeneratorInterface
 {
@@ -71,7 +71,6 @@ class Svg implements GeneratorInterface
     {
 
         $waveform = $this->getWaveform();
-        $width    = $waveform->getWidth();
         $height   = $waveform->getHeight();
 
         $svg = '<?xml version="1.0"?>' . "\n";
@@ -88,9 +87,9 @@ class Svg implements GeneratorInterface
 
         // first pass
         foreach ($waveformdata as $position => $value) {
-            // data values can range between 0 and 255
+            // data values can range between 0 and height
             $x = number_format($position / $datasize * 100, 2);
-            $y = number_format($value / 255 * 100, 2);
+            $y = number_format($value / $height * 100, 2);
             $y = 100 - $y;
 
             $polygon .= $x . ',' . $y . ' ';
@@ -100,9 +99,9 @@ class Svg implements GeneratorInterface
         $waveformdata = array_reverse($waveformdata, true);
 
         foreach ($waveformdata as $position => $value) {
-            // data values can range between 0 and 255
+            // data values can range between 0 and height
             $x = number_format($position / $datasize * 100, 2);
-            $y = number_format($value / 255 * 100, 2);
+            $y = number_format($value / $height * 100, 2);
 
             $polygon .= $x . ',' . $y . ' ';
         }
@@ -111,7 +110,7 @@ class Svg implements GeneratorInterface
         $polygon .= '"/>' . "\n";
         $svg .= $polygon;
         $svg .= "</svg>\n";
-        $svg .= "\n</svg>";
+        $svg .= "</svg>";
 
         return $svg;
     }
