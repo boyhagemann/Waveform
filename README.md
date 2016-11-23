@@ -64,7 +64,7 @@ $filename = 'the/path/to/your/file.wav';
 
 $waveform =  Waveform::fromFilename($filename);
 $waveform->setGenerator(new Generator\Png)
-         ->setWidh(960)
+         ->setWidth(960)
          ->setHeight(400);
 
 // Will display the image, including setting the read image/png header
@@ -81,7 +81,8 @@ use BoyHagemann\Waveform\Waveform;
 $filename = 'the/path/to/your/file.wav';
 
 $waveform =  Waveform::fromFilename($filename);
-$waveform->setWidh(960)
+$waveform->setGenerator(new Generator\Html)
+         ->setWidth(960)
          ->setHeight(400);
 
 $waveformHtml = $waveform->generate();
