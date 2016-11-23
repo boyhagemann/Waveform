@@ -30,7 +30,7 @@ echo Waveform::fromFilename('the/path/to/the/file.wav');
 The waveform can be presented in multiple ways:
 - Html
 - Png 
-- Svg (not implemented yet)
+- Svg
 
 It uses a simple interface so you can build your own generator. 
 The interface GeneratorInterface uses three simple methods:
@@ -120,6 +120,27 @@ $waveformHtml = $waveform->generate();
 </html>
 
 ```
+
+### Generate an svg based waveform
+```php
+<?php
+
+use BoyHagemann\Waveform\Waveform;
+
+$filename = 'the/path/to/your/file.wav';
+
+$waveform =  Waveform::fromFilename($filename);
+
+$waveform->setGenerator(new Generator\Svg)
+
+$waveformSvg = $waveform->generate();
+
+\\do something, e.g. save it to a file
+file_put_contents ('the/path/to/result/file.svg', $waveformSvg);
+
+```
+
+
 ## Maximize
 By default, the wave amplitude data is maximized to match the height you set for the waveform. 
 This means that if you set the height to 200, then the waveform is maximized to 200 pixels.
